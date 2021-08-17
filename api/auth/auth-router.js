@@ -22,7 +22,7 @@ router.post("/register", validateRoleName, (req, res, next) => {
   const {username, password} = req.body
   const {role_name}= req
   const hash = bcrypt.hashSync(password,8)
-  User.add({username,password: hash,role_name})
+  User.add({username, password: hash,role_name})
   .then(newUser=>{
     res.status(201).json(newUser)
   })
@@ -57,7 +57,7 @@ router.post("/login", checkUsernameExists, (req, res, next) => {
       token: `${token}`
     })
   }else{
-    next({status:401,message:'Invalid credentials'})
+    next({status:401,message:'Invalid credentials'}) 
   }
 });
 
